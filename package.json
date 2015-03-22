@@ -1,0 +1,72 @@
+{
+  "name": "purescript",
+  "version": "1.0.0",
+  "purescript-version": "0.6.9.3",
+  "description": "PureScript wrapper that makes it seamlessly available as a local dependency",
+  "license": "MIT",
+  "repository": "shinnn/node-purescript-bin",
+  "author": {
+    "name": "Shinnosuke Watanabe",
+    "email": "snnskwtnb@gmail.com",
+    "url": "http://github.com/shinnn"
+  },
+  "bin": {
+    "psc": "bin/psc.js",
+    "psc-docs": "bin/psc-docs.js",
+    "psc-make": "bin/psc-make.js",
+    "psci": "bin/psci.js"
+  },
+  "scripts": {
+    "postinstall": "node lib/install.js",
+    "lint": "jscs *.js bin/*.js lib/*.js && eslint *.js bin/*.js lib/*.js",
+    "pretest": "npm run-script lint",
+    "test": "node test.js | tap-spec",
+    "coverage": "istanbul cover test.js -x=index.js",
+    "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
+  },
+  "files": [
+    "bin",
+    "cli.js",
+    "index.js",
+    "lib"
+  ],
+  "keywords": [
+    "cli",
+    "build",
+    "install",
+    "installation",
+    "purs",
+    "purescript",
+    "haskell",
+    "language",
+    "compile",
+    "compiler",
+    "bin",
+    "binary",
+    "wrapper",
+    "psc",
+    "psc-docs",
+    "psc-make",
+    "psci"
+  ],
+  "dependencies": {
+    "async-each-series": "^0.1.1",
+    "bin-build": "^2.0.0",
+    "bin-wrapper": "^3.0.0",
+    "logalot": "^2.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^0.17.1",
+    "istanbul": "^0.3.8",
+    "jscs": "^1.11.3",
+    "rimraf": "^2.3.2",
+    "tap-spec": "^2.2.2",
+    "tape": "^3.5.0"
+  },
+  "jscsConfig": {
+    "preset": "google",
+    "maximumLineLength": 100,
+    "requireBlocksOnNewline": true,
+    "validateLineBreaks": "LF"
+  }
+}
