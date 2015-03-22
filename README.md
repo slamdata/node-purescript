@@ -1,10 +1,10 @@
 # PureScript wrapper for [Node](https://nodejs.org/)
 
 [![NPM version](http://img.shields.io/npm/v/purescript.svg)](https://www.npmjs.com/package/purescript)
-[![Build Status](http://img.shields.io/travis/shinnn/node-purescript-bin.svg)](http://travis-ci.org/shinnn/node-purescript-bin)
-[![Coverage Status](https://img.shields.io/coveralls/shinnn/node-purescript-bin.svg)](https://coveralls.io/r/shinnn/node-purescript-bin)
-[![Dependency Status](https://img.shields.io/david/shinnn/node-purescript-bin.svg)](https://david-dm.org/shinnn/node-purescript-bin)
-[![devDependency Status](https://img.shields.io/david/dev/shinnn/node-purescript-bin.svg)](https://david-dm.org/shinnn/node-purescript-bin#info=devDependencies)
+[![Build Status](http://img.shields.io/travis/purescript-contrib/node-purescript-bin.svg)](http://travis-ci.org/purescript-contrib/node-purescript-bin)
+[![Coverage Status](https://img.shields.io/coveralls/purescript-contrib/node-purescript-bin.svg)](https://coveralls.io/r/purescript-contrib/node-purescript-bin)
+[![Dependency Status](https://img.shields.io/david/purescript-contrib/node-purescript-bin.svg)](https://david-dm.org/purescript-contrib/node-purescript-bin)
+[![devDependency Status](https://img.shields.io/david/dev/purescript-contrib/node-purescript-bin.svg)](https://david-dm.org/purescript-contrib/node-purescript-bin#info=devDependencies)
 
 [PureScript](http://www.purescript.org/) binary wrapper that makes it seamlessly available via [npm](https://www.npmjs.com/)
 

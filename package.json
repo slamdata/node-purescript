@@ -4,7 +4,7 @@
   "purescript-version": "0.6.9.3",
   "description": "PureScript wrapper that makes it seamlessly available as a local dependency",
   "license": "MIT",
-  "repository": "shinnn/node-purescript-bin",
+  "repository": "purescript-contrib/node-purescript-bin",
   "author": {
     "name": "Shinnosuke Watanabe",
     "email": "snnskwtnb@gmail.com",
