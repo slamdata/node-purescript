@@ -1,6 +1,6 @@
 {
   "name": "purescript",
-  "version": "1.0.0",
+  "version": "0.6.9",
   "purescript-version": "0.6.9.3",
   "description": "PureScript wrapper that makes it seamlessly available as a local dependency",
   "license": "MIT",
