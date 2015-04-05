@@ -66,7 +66,12 @@ test('The package entry point', function(t) {
       .setEncoding('utf8');
 });
 
-function binTest(binName) {
+[
+  'psc',
+  'psc-docs',
+  'psc-make',
+  'psci'
+].forEach(function(binName) {
   test('"' + binName + '" command', function(t) {
     t.plan(1);
 
@@ -77,16 +82,9 @@ function binTest(binName) {
         })
         .setEncoding('utf8');
   });
-}
+});
 
-[
-  'psc',
-  'psc-docs',
-  'psc-make',
-  'psci'
-].forEach(binTest);
-
-test('Rebuilding script', function(t) {
+test('Build script', function(t) {
   t.plan(5);
 
   var tmpDir = path.join(__dirname, 'tmp');
