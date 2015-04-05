@@ -21,12 +21,10 @@
     "lint": "jscs *.js bin/*.js lib/*.js && eslint *.js bin/*.js lib/*.js",
     "pretest": "npm run-script lint",
     "test": "node test.js | tap-spec",
-    "coverage": "istanbul cover test.js -x=index.js",
-    "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
+    "coverage": "istanbul cover test.js -x=index.js"
   },
   "files": [
     "bin",
-    "cli.js",
     "index.js",
     "lib"
   ],
@@ -53,15 +51,15 @@
     "async-each-series": "^0.1.1",
     "bin-build": "^2.0.0",
     "bin-wrapper": "^3.0.0",
-    "logalot": "^2.0.0"
+    "logalot": "^2.1.0"
   },
   "devDependencies": {
-    "eslint": "^0.17.1",
-    "istanbul": "^0.3.8",
-    "jscs": "^1.11.3",
+    "eslint": "^0.18.0",
+    "istanbul": "^0.3.13",
+    "jscs": "^1.12.0",
     "rimraf": "^2.3.2",
-    "tap-spec": "^2.2.2",
-    "tape": "^3.5.0"
+    "tap-spec": "^3.0.0",
+    "tape": "^4.0.0"
   },
   "jscsConfig": {
     "preset": "google",
