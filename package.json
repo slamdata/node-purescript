@@ -21,7 +21,7 @@
     "lint": "jscs *.js bin/*.js lib/*.js && eslint *.js bin/*.js lib/*.js",
     "pretest": "npm run-script lint",
     "test": "node test.js | tap-spec",
-    "coverage": "istanbul cover test.js -x=index.js"
+    "coverage": "istanbul cover test.js"
   },
   "files": [
     "bin",
@@ -50,14 +50,15 @@
   "dependencies": {
     "async-each-series": "^0.1.1",
     "bin-build": "^2.0.0",
-    "bin-wrapper": "^3.0.0",
-    "logalot": "^2.1.0"
+    "bin-wrapper": "^3.0.1",
+    "logalot": "^2.1.0",
+    "to-executable-name": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "^0.18.0",
     "istanbul": "^0.3.13",
     "jscs": "^1.12.0",
-    "rimraf": "^2.3.2",
+    "rimraf": "^2.3.3",
     "tap-spec": "^3.0.0",
     "tape": "^4.0.0"
   },

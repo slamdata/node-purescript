@@ -2,12 +2,7 @@
 
 var path = require('path');
 
-var suffix;
-if (process.platform === 'win32') {
-  suffix = '.exe';
-} else {
-  suffix = '';
-}
+var toExecutableName = require('to-executable-name');
 
 [
   'psc',
@@ -15,5 +10,5 @@ if (process.platform === 'win32') {
   'psc-make',
   'psci'
 ].forEach(function(binName) {
-  exports[binName] = path.join(__dirname, 'vendor', binName + suffix);
+  exports[binName] = path.join(__dirname, 'vendor', toExecutableName(binName));
 });
