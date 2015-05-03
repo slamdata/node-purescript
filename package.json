@@ -18,7 +18,7 @@
   },
   "scripts": {
     "postinstall": "node lib/install.js",
-    "lint": "jscs *.js bin/*.js lib/*.js && eslint *.js bin/*.js lib/*.js",
+    "lint": "eslint --config node_modules/@shinnn/eslintrc-node/rc.json index.js test.js bin lib",
     "pretest": "npm run-script lint",
     "test": "node test.js | tap-spec",
     "coverage": "istanbul cover test.js"
@@ -55,17 +55,11 @@
     "to-executable-name": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^0.18.0",
+    "@shinnn/eslintrc-node": "^1.0.2",
+    "eslint": "^0.20.0",
     "istanbul": "^0.3.13",
-    "jscs": "^1.12.0",
     "rimraf": "^2.3.3",
     "tap-spec": "^3.0.0",
     "tape": "^4.0.0"
-  },
-  "jscsConfig": {
-    "preset": "google",
-    "maximumLineLength": 100,
-    "requireBlocksOnNewline": true,
-    "validateLineBreaks": "LF"
   }
 }
