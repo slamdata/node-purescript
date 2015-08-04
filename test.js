@@ -14,24 +14,13 @@ var pkg = require('./package.json');
 var binaries = pkg.bin;
 
 var SOURCE_URL = require('./lib').SOURCE_URL;
-var VERSION = '0.7.0.0';
+var VERSION = '0.7.2.0';
 
 test('The package entry point', function(t) {
   t.plan(5);
 
   Object.keys(binaries).forEach(function(binName) {
     var cp = spawn(require('./')[binName], ['--help']);
-    if (binName === 'psc-publish') {
-      cp.stderr.setEncoding('utf8').pipe(concatStream({encoding: 'string'}, function(msg) {
-        t.ok(
-          /There is a problem with your package/.test(msg),
-          'should expose a path to ' + binName + ' binary.'
-        );
-      }));
-
-      return;
-    }
-
     cp.stdout.setEncoding('utf8').pipe(concatStream({encoding: 'string'}, function(msg) {
       t.ok(
         new RegExp('Usage: ' + binName).test(msg),
@@ -41,12 +30,7 @@ test('The package entry point', function(t) {
   });
 });
 
-[
-  'psc',
-  'psc-bundle',
-  'psc-docs',
-  'psci'
-].forEach(function(binName) {
+Object.keys(binaries).forEach(function(binName) {
   test('"' + binName + '" command', function(t) {
     t.plan(1);
 
@@ -57,17 +41,6 @@ test('The package entry point', function(t) {
           t.equal(version, VERSION + EOL, 'should run ' + binName + ' binary.');
         }));
   });
-});
-
-test('"psc-publish" command', function(t) {
-  t.plan(1);
-
-  spawn('node', [path.resolve(pkg.bin['psc-publish'])])
-    .stderr
-      .setEncoding('utf8')
-      .pipe(concatStream({encoding: 'string'}, function(msg) {
-        t.ok(/file was not found/.test(msg), 'should run psc-publish binary.');
-      }));
 });
 
 test('Build script', function(t) {
