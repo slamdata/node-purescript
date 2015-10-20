@@ -14,7 +14,7 @@ var pkg = require('./package.json');
 var binaries = pkg.bin;
 
 var SOURCE_URL = require('./lib').SOURCE_URL;
-var VERSION = require('./version');
+var VERSION = '0.7.5';
 
 test('The package entry point', function(t) {
   t.plan(5);
