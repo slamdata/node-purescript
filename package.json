@@ -1,6 +1,6 @@
 {
   "name": "purescript",
-  "version": "0.7.5-rc.4",
+  "version": "0.7.5",
   "description": "PureScript wrapper that makes it seamlessly available as a local dependency",
   "license": "MIT",
   "repository": "purescript-contrib/node-purescript-bin",
