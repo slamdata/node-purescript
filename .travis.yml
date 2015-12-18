@@ -1,23 +1,27 @@
+sudo: false
 git:
-  depth: 2
+  depth: 1
+# https://github.com/hvr/multi-ghc-travis
+addons:
+  apt:
+    sources: hvr-ghc
+    packages:
+      - cabal-install-1.22
+      - ghc-7.10.2
+      - alex-3.1.4
+      - happy-1.19.5
 language: node_js
 branches:
   except: /^v\d/
-node_js:
-  - iojs
-  - node
-# https://github.com/hvr/multi-ghc-travis
-env:
-  - CABALVER=1.22 GHCVER=7.10.2
+node_js: node
 before_install:
-  - travis_retry sudo add-apt-repository -y ppa:hvr/ghc
-  - travis_retry sudo apt-get update
-  - travis_retry sudo apt-get install cabal-install-$CABALVER ghc-$GHCVER
-  - export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/$CABALVER/bin:$HOME/.cabal/bin:$PATH
+  - export PATH="/opt/ghc/7.10.2/bin:$PATH"
+  - export PATH="/opt/cabal/1.22/bin:$PATH"
+  - export PATH="$HOME/.cabal/bin:$PATH"
+  - export PATH="/opt/happy/1.19.5/bin:/$PATH"
+  - export PATH="/opt/alex/3.1.4/bin:/$PATH"
   - cabal --version
   - echo "$(ghc --version) [$(ghc --print-project-git-commit-id 2> /dev/null || echo '?')]"
-  - cabal update
-  - cabal install --constraint=transformers\ installed happy alex
 script:
   - npm run-script pretest
   - npm run-script coverage
