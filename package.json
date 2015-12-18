@@ -5,6 +5,9 @@
   "license": "MIT",
   "repository": "purescript-contrib/node-purescript-bin",
   "author": "Shinnosuke Watanabe <snnskwtnb@gmail.com> (http://github.com/shinnn)",
+  "engines": {
+    "node": ">=4"
+  },
   "bin": {
     "psc": "bin/psc.js",
     "psc-bundle": "bin/psc-bundle.js",
@@ -13,12 +16,12 @@
     "psci": "bin/psci.js"
   },
   "scripts": {
-    "postinstall": "node lib/install.js",
-    "build": "node build.js",
-    "lint": "eslint --config node_modules/@shinnn/eslintrc-node/rc.json --ignore-path .gitignore .",
+    "postinstall": "node --harmony_destructuring lib/install.js",
+    "build": "node --harmony_destructuring build.js",
+    "lint": "eslint --config @shinnn/node --ignore-path .gitignore .",
     "pretest": "npm run-script lint && npm run-script build",
-    "test": "node test.js",
-    "coverage": "istanbul cover test.js"
+    "test": "node --strong_mode --harmony_destructuring --harmony_array_includes test.js",
+    "coverage": "node --strong_mode --harmony_destructuring --harmony_array_includes node_modules/.bin/istanbul cover test.js"
   },
   "files": [
     "bin",
@@ -47,20 +50,20 @@
   ],
   "dependencies": {
     "async-each-series": "^1.0.0",
-    "bin-build": "^2.1.2",
+    "bin-build": "^2.2.0",
     "bin-wrapper": "^3.0.2",
     "logalot": "^2.1.0",
     "to-executable-name": "^1.0.0"
   },
   "devDependencies": {
-    "@shinnn/eslintrc-node": "^1.0.2",
+    "@shinnn/eslint-config-node": "^1.0.1",
     "concat-stream": "^1.5.0",
     "each-async": "^1.1.1",
-    "eslint": "^0.24.0",
-    "istanbul": "^0.3.17",
+    "eslint": "^1.10.3",
+    "istanbul": "^0.4.1",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.4.1",
-    "tap-spec": "^4.0.2",
-    "tape": "^4.0.0"
+    "tap-spec": "^4.1.1",
+    "tape": "^4.2.2"
   }
 }

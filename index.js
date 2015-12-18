@@ -1,8 +1,8 @@
 'use strict';
 
-var path = require('path');
+const path = require('path');
 
-var toExecutableName = require('to-executable-name');
+const toExecutableName = require('to-executable-name');
 
 [
   'psc',
@@ -10,6 +10,6 @@ var toExecutableName = require('to-executable-name');
   'psc-docs',
   'psc-publish',
   'psci'
-].forEach(function(binName) {
+].forEach(binName => {
   exports[binName] = path.join(__dirname, 'vendor', toExecutableName(binName));
 });

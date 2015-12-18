@@ -1,24 +1,24 @@
 'use strict';
 
-var assert = require('assert');
-var fs = require('fs');
+const assert = require('assert');
+const fs = require('fs');
 
-var eachAsync = require('each-async');
-var mkdirp = require('mkdirp');
-var rimraf = require('rimraf');
+const eachAsync = require('each-async');
+const mkdirp = require('mkdirp');
+const rimraf = require('rimraf');
 
-var binaries = require('./package.json').bin;
+const {bin: binaries} = require('./package.json');
 
-rimraf('bin/*', function(rmErr) {
+rimraf('bin/*', rmErr => {
   assert.ifError(rmErr);
 
-  mkdirp('bin', function(mkdirErr) {
+  mkdirp('bin', mkdirErr => {
     assert.ifError(mkdirErr);
 
-    eachAsync(Object.keys(binaries), function(binName, index, cb) {
+    eachAsync(Object.keys(binaries), (binName, index, cb) => {
       fs.writeFile(
         binaries[binName],
-        '#!/usr/bin/env node\nrequire(\'../cli.js\')(\'' + binName + '\');\n',
+        `#!/usr/bin/env node\nrequire('../cli.js')('${binName}');\n`,
         cb
       );
     }, assert.ifError);
