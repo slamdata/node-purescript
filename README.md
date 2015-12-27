@@ -1,8 +1,8 @@
-# PureScript wrapper for [Node](https://nodejs.org/)
+# [PureScript](https://github.com/purescript/purescript) wrapper for [Node](https://nodejs.org/)
 
 [![NPM version](http://img.shields.io/npm/v/purescript.svg)](https://www.npmjs.com/package/purescript)
 [![Build Status](http://img.shields.io/travis/purescript-contrib/node-purescript-bin.svg)](http://travis-ci.org/purescript-contrib/node-purescript-bin)
-[![Coverage Status](https://img.shields.io/coveralls/purescript-contrib/node-purescript-bin.svg)](https://coveralls.io/r/purescript-contrib/node-purescript-bin)
+[![Coverage Status](https://img.shields.io/coveralls/purescript-contrib/node-purescript-bin.svg)](https://coveralls.io/github/purescript-contrib/node-purescript-bin?branch=master)
 [![Dependency Status](https://img.shields.io/david/purescript-contrib/node-purescript-bin.svg)](https://david-dm.org/purescript-contrib/node-purescript-bin)
 [![devDependency Status](https://img.shields.io/david/dev/purescript-contrib/node-purescript-bin.svg)](https://david-dm.org/purescript-contrib/node-purescript-bin#info=devDependencies)
 
@@ -10,10 +10,18 @@
 
 ## Installation
 
-[Use npm](https://docs.npmjs.com/cli/install).
+[Use npm](https://docs.npmjs.com/cli/install) after making sure your development environment satisfies [the requirements](https://github.com/purescript/purescript/blob/3fa95cc6e4e814d71d52e24062d6e9ecef3c16d3/INSTALL.md#the-curses-library).
 
-```sh
+```
 npm install purescript
+```
+
+### Release candidate version
+
+Specify `next` [tag](https://docs.npmjs.com/cli/dist-tag#purpose) on installation.
+
+```
+npm install purescript@next
 ```
 
 ## Usage
@@ -50,7 +58,7 @@ The path to [`psc`](https://github.com/purescript/purescript/wiki/Language-Guide
 
 Type: `String`
 
-The path to `psc-bundle` binary
+The path to [`psc-bundle`](https://github.com/purescript/purescript/blob/master/psc-bundle/README.md) binary
 
 ### require('purescript')['psc-docs']
 
@@ -80,8 +88,8 @@ npm install -g purescript
 psc --help
 psc-bundle --help
 psc-docs --help
+psc-publish --help
 psci --help
-psc-publish
 ```
 
 ## License
