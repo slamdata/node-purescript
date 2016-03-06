@@ -12,10 +12,10 @@
     "psc": "bin/psc.js",
     "psc-bundle": "bin/psc-bundle.js",
     "psc-docs": "bin/psc-docs.js",
-    "psc-publish": "bin/psc-publish.js",
-    "psci": "bin/psci.js",
+    "psc-ide-client": "bin/psc-ide-client.js",
     "psc-ide-server": "bin/psc-ide-server.js",
-    "psc-ide-client": "bin/psc-ide-client.js"
+    "psc-publish": "bin/psc-publish.js",
+    "psci": "bin/psci.js"
   },
   "scripts": {
     "postinstall": "node --harmony_destructuring lib/install.js",

@@ -17,7 +17,7 @@ const {SOURCE_URL} = require('./lib');
 const VERSION = '0.8.2.0';
 
 test('The package entry point', t => {
-  t.plan(5);
+  t.plan(7);
 
   Object.keys(binaries).forEach(binName => {
     const cp = spawn(require('.')[binName], ['--help']);
@@ -44,7 +44,7 @@ Object.keys(binaries).forEach(binName => {
 });
 
 test('Build script', t => {
-  t.plan(6);
+  t.plan(8);
 
   const tmpDir = path.join(__dirname, 'tmp');
 
