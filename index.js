@@ -8,6 +8,8 @@ const toExecutableName = require('to-executable-name');
   'psc',
   'psc-bundle',
   'psc-docs',
+  'psc-ide-client',
+  'psc-ide-server',
   'psc-publish',
   'psci'
 ].forEach(binName => {
