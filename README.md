@@ -34,6 +34,8 @@ const paths = require('purescript');
 paths.psc; //=> '/path/to/proj/node_modules/purescript/vendor/psc'
 paths['psc-bundle']; //=> '/path/to/proj/node_modules/purescript/vendor/psc-bundle'
 paths['psc-docs']; //=> '/path/to/proj/node_modules/purescript/vendor/psc-docs'
+paths['psc-ide-client']; //=> '/path/to/proj/node_modules/purescript/vendor/psc-ide-client'
+paths['psc-ide-server']; //=> '/path/to/proj/node_modules/purescript/vendor/psc-ide-server'
 paths['psc-publish']; //=> '/path/to/proj/node_modules/purescript/vendor/psc-publish'
 paths.psci; //=> '/path/to/proj/node_modules/purescript/vendor/psci'
 
@@ -66,6 +68,18 @@ Type: `String`
 
 The path to `psc-docs` binary
 
+### require('purescript')['psc-ide-client']
+
+Type: `String`
+
+The path to [`psc-ide-client`](https://github.com/purescript/purescript/tree/master/psc-ide-server#issuing-queries) binary
+
+### require('purescript')['psc-ide-server']
+
+Type: `String`
+
+The path to [`psc-ide-server`](https://github.com/purescript/purescript/tree/master/psc-ide-server#running-the-server) binary
+
 ### require('purescript')['psc-publish']
 
 Type: `String`
@@ -88,6 +102,8 @@ npm install -g purescript
 psc --help
 psc-bundle --help
 psc-docs --help
+psc-ide-client --help
+psc-ide-server --help
 psc-publish --help
 psci --help
 ```
