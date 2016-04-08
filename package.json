@@ -44,10 +44,14 @@
     "compiler",
     "bin",
     "binary",
+    "binaries",
     "wrapper",
     "psc",
+    "psc-bundle",
     "psc-docs",
-    "psc-make",
+    "psc-ide-client",
+    "psc-ide-server",
+    "psc-publish",
     "psci"
   ],
   "dependencies": {
