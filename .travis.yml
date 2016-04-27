@@ -14,7 +14,9 @@ addons:
 language: node_js
 branches:
   except: /^v\d/
-node_js: node
+node_js:
+  - node
+  - 4
 before_install:
   - export PATH="/opt/ghc/7.10.3/bin:$PATH"
   - export PATH="/opt/cabal/1.24/bin:$PATH"

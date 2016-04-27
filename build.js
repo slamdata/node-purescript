@@ -7,7 +7,7 @@ const eachAsync = require('each-async');
 const mkdirp = require('mkdirp');
 const rimraf = require('rimraf');
 
-const {bin: binaries} = require('./package.json');
+const binaries = require('./package.json').bin;
 
 rimraf('bin/*', rmErr => {
   assert.ifError(rmErr);

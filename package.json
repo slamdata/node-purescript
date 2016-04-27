@@ -18,12 +18,12 @@
     "psci": "bin/psci.js"
   },
   "scripts": {
-    "postinstall": "node --harmony_destructuring lib/install.js",
-    "build": "node --harmony_destructuring build.js",
+    "postinstall": "node lib/install.js",
+    "build": "node build.js",
     "lint": "eslint --config @shinnn/node --ignore-path .gitignore .",
     "pretest": "npm run-script lint && npm run-script build",
-    "test": "node --strong_mode --harmony_destructuring --harmony_array_includes test.js",
-    "coverage": "node --strong_mode --harmony_destructuring --harmony_array_includes node_modules/.bin/istanbul cover test.js"
+    "test": "node --strong_mode test.js",
+    "coverage": "node --strong_mode node_modules/.bin/istanbul cover test.js"
   },
   "files": [
     "bin",
