@@ -39,7 +39,7 @@ paths['psc-ide-server']; //=> '/path/to/proj/node_modules/purescript/vendor/psc-
 paths['psc-publish']; //=> '/path/to/proj/node_modules/purescript/vendor/psc-publish'
 paths.psci; //=> '/path/to/proj/node_modules/purescript/vendor/psci'
 
-execFile(psc, ['input.purs', '--output', 'output.purs'], err => {
+execFile(paths.psc, ['input.purs', '--output', 'output.purs'], err => {
   if (err) {
     throw err;
   }
