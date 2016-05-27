@@ -8,7 +8,7 @@ addons:
     sources: hvr-ghc
     packages:
       - cabal-install-1.24
-      - ghc-7.10.3
+      - ghc-8.0.2
       - alex-3.1.7
       - happy-1.19.5
 language: node_js
@@ -18,7 +18,7 @@ node_js:
   - node
   - 4
 before_install:
-  - export PATH="/opt/ghc/7.10.3/bin:$PATH"
+  - export PATH="/opt/ghc/8.0.2/bin:$PATH"
   - export PATH="/opt/cabal/1.24/bin:$PATH"
   - export PATH="$HOME/.cabal/bin:$PATH"
   - export PATH="/opt/happy/1.19.5/bin:/$PATH"
