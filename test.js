@@ -14,7 +14,7 @@ const test = require('tape');
 const binaries = require('./package.json').bin;
 
 const SOURCE_URL = require('./lib').SOURCE_URL;
-const VERSION = '0.9.1';
+const VERSION = '0.9.2';
 
 test('The package entry point', t => {
   t.plan(7);
