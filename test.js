@@ -2,7 +2,6 @@
 
 const EOL = require('os').EOL;
 const fs = require('fs');
-const os = require('os');
 const path = require('path');
 const spawn = require('child_process').spawn;
 
@@ -14,7 +13,7 @@ const test = require('tape');
 const binaries = require('./package.json').bin;
 
 const SOURCE_URL = require('./lib').SOURCE_URL;
-const VERSION = '0.9.1';
+const VERSION = '0.9.2';
 
 test('The package entry point', t => {
   t.plan(7);
@@ -49,12 +48,12 @@ test('Build script', t => {
   const tmpDir = path.join(__dirname, 'tmp');
 
   rimraf.sync(tmpDir);
+  fs.mkdirSync(tmpDir);
 
   binBuild()
     .src(SOURCE_URL)
-    .cmd(`cabal sandbox init --sandbox="${path.join(tmpDir, '.cabal-sandbox')}"`)
-    .cmd('cabal update')
-    .cmd(`cabal install --bindir ${tmpDir} --jobs=${os.cpus().length}`)
+    .cmd('stack setup')
+    .cmd(`stack install --local-bin-path ${tmpDir}`)
     .run(runErr => {
       /* istanbul ignore if */
       if (runErr) {
