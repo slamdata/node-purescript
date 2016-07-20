@@ -11,6 +11,9 @@ addons:
       - ghc-8.0.2
       - alex-3.1.7
       - happy-1.19.5
+cache:
+  directories:
+    - $HOME/.stack
 language: node_js
 branches:
   except: /^v\d/
@@ -18,14 +21,10 @@ node_js:
   - node
   - 4
 before_install:
-  - export PATH="/opt/ghc/8.0.2/bin:$PATH"
-  - export PATH="/opt/cabal/1.24/bin:$PATH"
-  - export PATH="$HOME/.cabal/bin:$PATH"
-  - export PATH="/opt/happy/1.19.5/bin:/$PATH"
-  - export PATH="/opt/alex/3.1.7/bin:/$PATH"
-  - cabal --version
-  - echo "$(ghc --version) [$(ghc --print-project-git-commit-id 2> /dev/null || echo '?')]"
-script: npm run-script pretest && travis_wait npm run-script coverage
+  - mkdir -p ~/.local/bin
+  - export PATH=$HOME/.local/bin:$PATH
+  - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+script: npm run-script pretest && travis_wait 45 npm run-script coverage
 after_script:
   - npm install istanbul-coveralls
   - node node_modules/.bin/istanbul-coveralls
