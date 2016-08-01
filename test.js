@@ -13,7 +13,7 @@ const test = require('tape');
 const binaries = require('./package.json').bin;
 
 const SOURCE_URL = require('./lib').SOURCE_URL;
-const VERSION = '0.9.2';
+const VERSION = '0.9.3';
 
 test('The package entry point', t => {
   t.plan(7);
@@ -35,10 +35,10 @@ Object.keys(binaries).forEach(binName => {
 
     spawn('node', [path.resolve(binaries[binName]), '--version'])
       .stdout
-        .setEncoding('utf8')
-        .pipe(concatStream({encoding: 'string'}, version => {
-          t.equal(version, VERSION + EOL, `should run ${binName} binary.`);
-        }));
+      .setEncoding('utf8')
+      .pipe(concatStream({encoding: 'string'}, version => {
+        t.equal(version, VERSION + EOL, `should run ${binName} binary.`);
+      }));
   });
 });
 
