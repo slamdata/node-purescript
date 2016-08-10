@@ -3,8 +3,8 @@
 [![NPM version](http://img.shields.io/npm/v/purescript.svg)](https://www.npmjs.com/package/purescript)
 [![Build Status](http://img.shields.io/travis/purescript-contrib/node-purescript-bin.svg)](http://travis-ci.org/purescript-contrib/node-purescript-bin)
 [![Coverage Status](https://img.shields.io/coveralls/purescript-contrib/node-purescript-bin.svg)](https://coveralls.io/github/purescript-contrib/node-purescript-bin?branch=master)
-[![Dependency Status](https://img.shields.io/david/purescript-contrib/node-purescript-bin.svg)](https://david-dm.org/purescript-contrib/node-purescript-bin)
-[![devDependency Status](https://img.shields.io/david/dev/purescript-contrib/node-purescript-bin.svg)](https://david-dm.org/purescript-contrib/node-purescript-bin#info=devDependencies)
+[![dependencies Status](https://david-dm.org/purescript-contrib/node-purescript-bin/status.svg)](https://david-dm.org/purescript-contrib/node-purescript-bin)
+[![devDependencies Status](https://david-dm.org/purescript-contrib/node-purescript-bin/dev-status.svg)](https://david-dm.org/purescript-contrib/node-purescript-bin?type=dev)
 
 [PureScript](http://www.purescript.org/) binary wrapper that makes it seamlessly available via [npm](https://www.npmjs.com/)
 
@@ -96,7 +96,7 @@ The path to [`psci`](https://github.com/purescript/purescript/wiki/PSCi) binary
 
 You can use it via CLI by installing it [globally](https://docs.npmjs.com/files/folders#global-installation). 
 
-```sh
+```
 npm install -g purescript
 
 psc --help
