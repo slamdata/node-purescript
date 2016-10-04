@@ -22,8 +22,8 @@
     "build": "node build.js",
     "lint": "eslint --config @shinnn/node --ignore-path .gitignore .",
     "pretest": "npm run-script lint && npm run-script build",
-    "test": "node --strong_mode test.js",
-    "coverage": "node --strong_mode node_modules/.bin/istanbul cover test.js"
+    "test": "node test.js",
+    "coverage": "istanbul cover test.js"
   },
   "files": [
     "bin",

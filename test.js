@@ -1,4 +1,4 @@
-'use strong';
+'use strict';
 
 const EOL = require('os').EOL;
 const fs = require('fs');
