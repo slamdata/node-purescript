@@ -20,7 +20,7 @@
   "scripts": {
     "postinstall": "node lib/install.js",
     "build": "node build.js",
-    "lint": "eslint --config @shinnn/node --ignore-path .gitignore .",
+    "lint": "eslint --format=codeframe --ignore-path=.gitignore .",
     "pretest": "npm run-script lint && npm run-script build",
     "test": "node test.js",
     "coverage": "istanbul cover test.js"
@@ -65,11 +65,14 @@
     "@shinnn/eslint-config-node": "^3.0.0",
     "concat-stream": "^1.5.0",
     "each-async": "^1.1.1",
-    "eslint": "^3.1.1",
+    "eslint": "^3.9.1",
     "istanbul": "^0.4.2",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.5.4",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.0"
+  },
+  "eslintConfig": {
+    "extends": "@shinnn/node"
   }
 }
