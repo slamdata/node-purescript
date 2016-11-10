@@ -1,6 +1,6 @@
 {
   "name": "purescript",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "PureScript wrapper that makes it seamlessly available as a local dependency",
   "license": "MIT",
   "repository": "purescript-contrib/node-purescript-bin",
@@ -52,6 +52,7 @@
     "psc-docs",
     "psc-ide-client",
     "psc-ide-server",
+    "psc-package",
     "psc-publish",
     "psci"
   ],
