@@ -14,6 +14,7 @@
     "psc-docs": "bin/psc-docs.js",
     "psc-ide-client": "bin/psc-ide-client.js",
     "psc-ide-server": "bin/psc-ide-server.js",
+    "psc-package": "bin/psc-package.js",
     "psc-publish": "bin/psc-publish.js",
     "psci": "bin/psci.js"
   },

@@ -13,10 +13,10 @@ const test = require('tape');
 const binaries = require('./package.json').bin;
 
 const SOURCE_URL = require('./lib').SOURCE_URL;
-const VERSION = '0.10.1';
+const VERSION = '0.10.2';
 
 test('The package entry point', t => {
-  t.plan(7);
+  t.plan(8);
 
   Object.keys(binaries).forEach(binName => {
     const cp = spawn(require('.')[binName], ['--help']);
@@ -43,7 +43,7 @@ Object.keys(binaries).forEach(binName => {
 });
 
 test('Build script', t => {
-  t.plan(8);
+  t.plan(9);
 
   const tmpDir = path.join(__dirname, 'tmp');
 
