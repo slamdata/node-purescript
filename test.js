@@ -10,15 +10,25 @@ const concatStream = require('concat-stream');
 const rimraf = require('rimraf');
 const test = require('tape');
 
-const binaries = require('./package.json').bin;
-
+const pkg = require('./package.json');
+const binNames = Object.keys(pkg.bin);
 const SOURCE_URL = require('./lib').SOURCE_URL;
 const VERSION = '0.10.2';
+
+test('`keywords` field of package.json', t => {
+  t.deepEqual(
+    pkg.keywords.splice(-binNames.length),
+    binNames,
+    'should include all binary names in alphabetical order.'
+  );
+
+  t.end();
+});
 
 test('The package entry point', t => {
   t.plan(8);
 
-  Object.keys(binaries).forEach(binName => {
+  binNames.forEach(binName => {
     const cp = spawn(require('.')[binName], ['--help']);
     cp.stdout.setEncoding('utf8').pipe(concatStream({encoding: 'string'}, msg => {
       t.ok(
@@ -29,11 +39,11 @@ test('The package entry point', t => {
   });
 });
 
-Object.keys(binaries).forEach(binName => {
+binNames.forEach(binName => {
   test(`"${binName}" command`, t => {
     t.plan(1);
 
-    spawn('node', [path.resolve(binaries[binName]), '--version'])
+    spawn('node', [path.resolve(pkg.bin[binName]), '--version'])
       .stdout
       .setEncoding('utf8')
       .pipe(concatStream({encoding: 'string'}, version => {
@@ -64,7 +74,7 @@ test('Build script', t => {
 
       fs.readdir(tmpDir, (readErr, filePaths) => {
         t.strictEqual(readErr, null, 'should create a directory.');
-        Object.keys(binaries).forEach(binName => {
+        binNames.forEach(binName => {
           t.ok(filePaths.indexOf(binName) !== -1, `should compile ${binName} binary.`);
         });
       });
