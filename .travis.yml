@@ -1,8 +1,6 @@
 dist: trusty
-group: beta
 git:
   depth: 1
-# https://github.com/hvr/multi-ghc-travis
 addons:
   apt:
     sources: hvr-ghc
