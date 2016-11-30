@@ -26,5 +26,3 @@ script: npm run-script pretest && travis_wait 45 npm run-script coverage
 after_script:
   - npm install istanbul-coveralls
   - node node_modules/.bin/istanbul-coveralls
-notifications:
-  email: false
