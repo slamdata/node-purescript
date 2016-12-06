@@ -14,6 +14,7 @@ const pkg = require('./package.json');
 const binNames = Object.keys(pkg.bin);
 const SOURCE_URL = require('./lib').SOURCE_URL;
 const VERSION = '0.10.2';
+const allowDifferentUserFlag = ' --allow-different-user'.repeat(Number(process.platform !== 'win32'));
 
 test('`keywords` field of package.json', t => {
   t.deepEqual(
@@ -62,8 +63,8 @@ test('Build script', t => {
 
   binBuild()
     .src(SOURCE_URL)
-    .cmd('stack setup')
-    .cmd(`stack install --local-bin-path ${tmpDir}`)
+    .cmd(`stack setup${allowDifferentUserFlag}`)
+    .cmd(`stack install${allowDifferentUserFlag} --local-bin-path ${tmpDir}`)
     .run(runErr => {
       /* istanbul ignore if */
       if (runErr) {
