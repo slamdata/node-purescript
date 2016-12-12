@@ -1,4 +1,4 @@
-# [PureScript](https://github.com/purescript/purescript) wrapper for [Node](https://nodejs.org/)
+# [PureScript](https://github.com/purescript/purescript) wrapper for [Node.js](https://nodejs.org/)
 
 [![NPM version](http://img.shields.io/npm/v/purescript.svg)](https://www.npmjs.com/package/purescript)
 [![Build Status](http://img.shields.io/travis/purescript-contrib/node-purescript-bin.svg)](http://travis-ci.org/purescript-contrib/node-purescript-bin)
@@ -30,12 +30,12 @@ npm install purescript@next
 const {execFile} = require('child_process');
 const paths = require('purescript');
 
-// On POSIX
 paths.psc; //=> '/path/to/proj/node_modules/purescript/vendor/psc'
 paths['psc-bundle']; //=> '/path/to/proj/node_modules/purescript/vendor/psc-bundle'
 paths['psc-docs']; //=> '/path/to/proj/node_modules/purescript/vendor/psc-docs'
 paths['psc-ide-client']; //=> '/path/to/proj/node_modules/purescript/vendor/psc-ide-client'
 paths['psc-ide-server']; //=> '/path/to/proj/node_modules/purescript/vendor/psc-ide-server'
+paths['psc-package']; //=> '/path/to/proj/node_modules/purescript/vendor/psc-package'
 paths['psc-publish']; //=> '/path/to/proj/node_modules/purescript/vendor/psc-publish'
 paths.psci; //=> '/path/to/proj/node_modules/purescript/vendor/psci'
 
@@ -80,6 +80,12 @@ Type: `String`
 
 The path to [`psc-ide-server`](https://github.com/purescript/purescript/tree/master/psc-ide-server#running-the-server) binary
 
+### require('purescript')['psc-package']
+
+Type: `String`
+
+The path to [`psc-package`](https://github.com/purescript/purescript/blob/master/psc-package/README.md) binary
+
 ### require('purescript')['psc-publish']
 
 Type: `String`
@@ -94,7 +100,7 @@ The path to [`psci`](https://github.com/purescript/purescript/wiki/PSCi) binary
 
 ## CLI
 
-You can use it via CLI by installing it [globally](https://docs.npmjs.com/files/folders#global-installation). 
+You can use it via CLI by installing it [globally](https://docs.npmjs.com/files/folders#global-installation).
 
 ```
 npm install -g purescript
@@ -104,6 +110,7 @@ psc-bundle --help
 psc-docs --help
 psc-ide-client --help
 psc-ide-server --help
+psc-package --help
 psc-publish --help
 psci --help
 ```
