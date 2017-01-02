@@ -13,7 +13,7 @@ const test = require('tape');
 const pkg = require('./package.json');
 const binNames = Object.keys(pkg.bin);
 const SOURCE_URL = require('./lib').SOURCE_URL;
-const VERSION = '0.10.3';
+const VERSION = '0.10.4';
 const allowDifferentUserFlag = ' --allow-different-user'.repeat(Number(process.platform !== 'win32'));
 
 test('`keywords` field of package.json', t => {
