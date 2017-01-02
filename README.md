@@ -16,14 +16,6 @@
 npm install purescript
 ```
 
-### Release candidate version
-
-Specify `next` [tag](https://docs.npmjs.com/cli/dist-tag#purpose) on installation.
-
-```
-npm install purescript@next
-```
-
 ## Usage
 
 ```javascript
@@ -117,6 +109,6 @@ psci --help
 
 ## License
 
-Copyright (c) 2015 - 2016 [Shinnosuke Watanabe](https://github.com/shinnn)
+Copyright (c) 2015 - 2017 [Shinnosuke Watanabe](https://github.com/shinnn)
 
 Licensed under [the MIT License](./LICENSE).
