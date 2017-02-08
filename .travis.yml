@@ -2,8 +2,7 @@ dist: trusty
 git:
   depth: 1
 cache:
-  directories:
-    - $HOME/.stack
+  directories: $HOME/.stack
 language: node_js
 branches:
   except: /^v\d/
@@ -14,7 +13,11 @@ before_install:
   - mkdir -p ~/.local/bin
   - export PATH=$HOME/.local/bin:$PATH
   - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
-script: npm run-script pretest && travis_wait 45 npm run-script coverage
-after_script:
-  - npm install istanbul-coveralls
-  - node node_modules/.bin/istanbul-coveralls
+script:  if [[ `node --version` != v4.* ]];
+  then npm run-script pretest && travis_wait 45 npm run-script coverage;
+  else travis_wait 45 npm test;
+  fi;
+after_script: if [[ `node --version` != v4.* ]];
+  then npm install istanbul-coveralls &&
+  node node_modules/.bin/istanbul-coveralls;
+  fi;
