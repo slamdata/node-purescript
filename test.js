@@ -29,18 +29,18 @@ test('`keywords` field of package.json', t => {
 test('The package entry point', t => {
   t.plan(8);
 
-  binNames.forEach(binName => {
-    const cp = spawn(require('.')[binName], ['--help']);
-    cp.stdout.setEncoding('utf8').pipe(concatStream({encoding: 'string'}, msg => {
+  for (const binName of binNames) {
+    spawn(require('.')[binName], ['--help'])
+    .stdout.setEncoding('utf8').pipe(concatStream({encoding: 'string'}, msg => {
       t.ok(
         msg.indexOf('Usage: ' + binName) !== -1,
         `should expose a path to ${binName} binary.`
       );
     }));
-  });
+  }
 });
 
-binNames.forEach(binName => {
+for (const binName of binNames) {
   test(`"${binName}" command`, t => {
     t.plan(1);
 
@@ -48,10 +48,10 @@ binNames.forEach(binName => {
       .stdout
       .setEncoding('utf8')
       .pipe(concatStream({encoding: 'string'}, version => {
-        t.equal(version, VERSION + EOL, `should run ${binName} binary.`);
+        t.strictEqual(version, VERSION + EOL, `should run ${binName} binary.`);
       }));
   });
-});
+}
 
 test('Build script', t => {
   t.plan(9);
@@ -75,9 +75,10 @@ test('Build script', t => {
 
       fs.readdir(tmpDir, (readErr, filePaths) => {
         t.strictEqual(readErr, null, 'should create a directory.');
-        binNames.forEach(binName => {
+
+        for (const binName of binNames) {
           t.ok(filePaths.indexOf(binName) !== -1, `should compile ${binName} binary.`);
-        });
+        }
       });
     });
 });
