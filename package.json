@@ -9,20 +9,12 @@
     "node": ">=4"
   },
   "bin": {
-    "psc": "bin/psc.js",
-    "psc-bundle": "bin/psc-bundle.js",
-    "psc-docs": "bin/psc-docs.js",
-    "psc-ide-client": "bin/psc-ide-client.js",
-    "psc-ide-server": "bin/psc-ide-server.js",
-    "psc-package": "bin/psc-package.js",
-    "psc-publish": "bin/psc-publish.js",
-    "psci": "bin/psci.js"
+    "purs": "bin/purs.js"
   },
   "scripts": {
     "postinstall": "node lib/install.js",
-    "build": "node build.js",
     "lint": "eslint --format=codeframe --ignore-path=.gitignore .",
-    "pretest": "npm run-script lint && npm run-script build",
+    "pretest": "npm run-script lint",
     "test": "node test.js",
     "coverage": "istanbul cover test.js"
   },
@@ -47,17 +39,9 @@
     "binary",
     "binaries",
     "wrapper",
-    "psc",
-    "psc-bundle",
-    "psc-docs",
-    "psc-ide-client",
-    "psc-ide-server",
-    "psc-package",
-    "psc-publish",
-    "psci"
+    "purs"
   ],
   "dependencies": {
-    "async-each-series": "^1.0.0",
     "bin-build": "^2.2.0",
     "bin-wrapper": "^3.0.2",
     "logalot": "^2.1.0",

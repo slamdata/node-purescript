@@ -10,51 +10,36 @@ const concatStream = require('concat-stream');
 const rimraf = require('rimraf');
 const test = require('tape');
 
-const pkg = require('./package.json');
-const binNames = Object.keys(pkg.bin);
+const bin = require('./package.json').bin;
 const SOURCE_URL = require('./lib').SOURCE_URL;
-const VERSION = '0.10.7';
+const VERSION = '0.11.1';
 const allowDifferentUserFlag = ' --allow-different-user'.repeat(Number(process.platform !== 'win32'));
 
-test('`keywords` field of package.json', t => {
-  t.deepEqual(
-    pkg.keywords.splice(-binNames.length),
-    binNames,
-    'should include all binary names in alphabetical order.'
-  );
-
-  t.end();
-});
-
 test('The package entry point', t => {
-  t.plan(8);
+  t.plan(1);
 
-  for (const binName of binNames) {
-    spawn(require('.')[binName], ['--help'])
-    .stdout.setEncoding('utf8').pipe(concatStream({encoding: 'string'}, msg => {
-      t.ok(
-        msg.indexOf('Usage: ' + binName) !== -1,
-        `should expose a path to ${binName} binary.`
-      );
-    }));
-  }
+  spawn(require('.'), ['--help'])
+  .stdout.setEncoding('utf8').pipe(concatStream({encoding: 'string'}, msg => {
+    t.ok(
+      msg.indexOf('Usage: purs') !== -1,
+      'should expose a path to `purs` binary.'
+    );
+  }));
 });
 
-for (const binName of binNames) {
-  test(`"${binName}" command`, t => {
-    t.plan(1);
+test('`purs` command', t => {
+  t.plan(1);
 
-    spawn('node', [path.resolve(pkg.bin[binName]), '--version'])
-      .stdout
-      .setEncoding('utf8')
-      .pipe(concatStream({encoding: 'string'}, version => {
-        t.strictEqual(version, VERSION + EOL, `should run ${binName} binary.`);
-      }));
-  });
-}
+  spawn('node', [path.resolve(bin[Object.keys(bin)[0]]), '--version'])
+    .stdout
+    .setEncoding('utf8')
+    .pipe(concatStream({encoding: 'string'}, version => {
+      t.strictEqual(version, VERSION + EOL, 'should run `purs` binary.');
+    }));
+});
 
 test('Build script', t => {
-  t.plan(9);
+  t.plan(2);
 
   const tmpDir = path.join(__dirname, 'tmp');
 
@@ -76,9 +61,7 @@ test('Build script', t => {
       fs.readdir(tmpDir, (readErr, filePaths) => {
         t.strictEqual(readErr, null, 'should create a directory.');
 
-        for (const binName of binNames) {
-          t.ok(filePaths.indexOf(binName) !== -1, `should compile ${binName} binary.`);
-        }
+        t.ok(filePaths.indexOf('purs') !== -1, 'should compile `purs` binary.');
       });
     });
 });
