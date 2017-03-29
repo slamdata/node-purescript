@@ -6,21 +6,19 @@
   "repository": "purescript-contrib/node-purescript-bin",
   "author": "Shinnosuke Watanabe <snnskwtnb@gmail.com> (http://github.com/shinnn)",
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "bin": {
     "purs": "bin/purs.js"
   },
   "scripts": {
     "postinstall": "node lib/install.js",
-    "lint": "eslint --format=codeframe --ignore-path=.gitignore .",
-    "pretest": "npm run-script lint",
+    "pretest": "eslint --format=codeframe --ignore-path=.gitignore .",
     "test": "node test.js",
     "coverage": "istanbul cover test.js"
   },
   "files": [
     "bin",
-    "cli.js",
     "index.js",
     "lib"
   ],

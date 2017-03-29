@@ -1,17 +1,17 @@
 'use strict';
 
-const EOL = require('os').EOL;
+const {EOL} = require('os');
 const fs = require('fs');
-const path = require('path');
-const spawn = require('child_process').spawn;
+const {join} = require('path');
+const {spawn} = require('child_process');
 
 const binBuild = require('bin-build');
 const concatStream = require('concat-stream');
 const rimraf = require('rimraf');
 const test = require('tape');
 
-const bin = require('./package.json').bin;
-const SOURCE_URL = require('./lib').SOURCE_URL;
+const {bin} = require('./package.json');
+const {SOURCE_URL} = require('./lib');
 const VERSION = '0.11.1';
 const allowDifferentUserFlag = ' --allow-different-user'.repeat(Number(process.platform !== 'win32'));
 
@@ -21,7 +21,7 @@ test('The package entry point', t => {
   spawn(require('.'), ['--help'])
   .stdout.setEncoding('utf8').pipe(concatStream({encoding: 'string'}, msg => {
     t.ok(
-      msg.indexOf('Usage: purs') !== -1,
+      msg.startsWith('Usage: purs'),
       'should expose a path to `purs` binary.'
     );
   }));
@@ -30,7 +30,7 @@ test('The package entry point', t => {
 test('`purs` command', t => {
   t.plan(1);
 
-  spawn('node', [path.resolve(bin[Object.keys(bin)[0]]), '--version'])
+  spawn('node', [join(__dirname, bin[Object.keys(bin)[0]]), '--version'])
     .stdout
     .setEncoding('utf8')
     .pipe(concatStream({encoding: 'string'}, version => {
@@ -41,7 +41,7 @@ test('`purs` command', t => {
 test('Build script', t => {
   t.plan(2);
 
-  const tmpDir = path.join(__dirname, 'tmp');
+  const tmpDir = join(__dirname, 'tmp');
 
   rimraf.sync(tmpDir);
   fs.mkdirSync(tmpDir);
