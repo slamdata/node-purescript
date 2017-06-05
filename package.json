@@ -47,14 +47,14 @@
   },
   "devDependencies": {
     "@shinnn/eslint-config-node": "^3.0.0",
-    "concat-stream": "^1.5.0",
+    "concat-stream": "^1.6.0",
     "each-async": "^1.1.1",
-    "eslint": "^3.9.1",
+    "eslint": "^3.19.0",
     "istanbul": "^0.4.2",
     "mkdirp": "^0.5.1",
-    "rimraf": "^2.5.4",
+    "rimraf": "^2.6.1",
     "tap-spec": "^4.1.1",
-    "tape": "^4.6.0"
+    "tape": "^4.6.3"
   },
   "eslintConfig": {
     "extends": "@shinnn/node"
