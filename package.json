@@ -43,6 +43,7 @@
     "bin-build": "^2.2.0",
     "bin-wrapper": "^3.0.2",
     "logalot": "^2.1.0",
+    "rimraf": "^2.6.1",
     "to-executable-name": "^1.0.0"
   },
   "devDependencies": {
@@ -52,7 +53,6 @@
     "eslint": "^3.19.0",
     "istanbul": "^0.4.2",
     "mkdirp": "^0.5.1",
-    "rimraf": "^2.6.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.3"
   },
