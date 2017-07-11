@@ -31,11 +31,11 @@ test('`purs` command', t => {
   t.plan(1);
 
   spawn('node', [join(__dirname, bin[Object.keys(bin)[0]]), '--version'])
-    .stdout
-    .setEncoding('utf8')
-    .pipe(concatStream({encoding: 'string'}, version => {
-      t.strictEqual(version, VERSION + EOL, 'should run `purs` binary.');
-    }));
+  .stdout
+  .setEncoding('utf8')
+  .pipe(concatStream({encoding: 'string'}, version => {
+    t.strictEqual(version, VERSION + EOL, 'should run `purs` binary.');
+  }));
 });
 
 test('Build script', t => {
@@ -47,21 +47,21 @@ test('Build script', t => {
   fs.mkdirSync(tmpDir);
 
   binBuild()
-    .src(SOURCE_URL)
-    .cmd(`stack setup${allowDifferentUserFlag}`)
-    .cmd(`stack install${allowDifferentUserFlag} --local-bin-path ${tmpDir}`)
-    .run(runErr => {
-      /* istanbul ignore if */
-      if (runErr) {
-        process.stderr.write(runErr.stack);
-        t.fail(runErr);
-        return;
-      }
+  .src(SOURCE_URL)
+  .cmd(`stack setup${allowDifferentUserFlag}`)
+  .cmd(`stack install${allowDifferentUserFlag} --local-bin-path ${tmpDir}`)
+  .run(runErr => {
+    /* istanbul ignore if */
+    if (runErr) {
+      process.stderr.write(runErr.stack);
+      t.fail(runErr);
+      return;
+    }
 
-      fs.readdir(tmpDir, (readErr, filePaths) => {
-        t.strictEqual(readErr, null, 'should create a directory.');
+    fs.readdir(tmpDir, (readErr, filePaths) => {
+      t.strictEqual(readErr, null, 'should create a directory.');
 
-        t.ok(filePaths.indexOf('purs') !== -1, 'should compile `purs` binary.');
-      });
+      t.ok(filePaths.indexOf('purs') !== -1, 'should compile `purs` binary.');
     });
+  });
 });
