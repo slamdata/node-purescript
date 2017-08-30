@@ -1,51 +1,50 @@
-# [PureScript](https://github.com/purescript/purescript) wrapper for [Node.js](https://nodejs.org/)
+# PureScript npm package
 
-[![NPM version](http://img.shields.io/npm/v/purescript.svg)](https://www.npmjs.com/package/purescript)
+[![npm version](http://img.shields.io/npm/v/purescript.svg)](https://www.npmjs.com/package/purescript)
 [![Build Status](http://img.shields.io/travis/purescript-contrib/node-purescript-bin.svg)](http://travis-ci.org/purescript-contrib/node-purescript-bin)
-[![Coverage Status](https://img.shields.io/coveralls/purescript-contrib/node-purescript-bin.svg)](https://coveralls.io/github/purescript-contrib/node-purescript-bin?branch=master)
-[![dependencies Status](https://david-dm.org/purescript-contrib/node-purescript-bin/status.svg)](https://david-dm.org/purescript-contrib/node-purescript-bin)
-[![devDependencies Status](https://david-dm.org/purescript-contrib/node-purescript-bin/dev-status.svg)](https://david-dm.org/purescript-contrib/node-purescript-bin?type=dev)
+[![Build status](https://ci.appveyor.com/api/projects/status/bmwd6id35uw9txnv/branch/master?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/node-purescript-bin/branch/master)
 
 [PureScript](http://www.purescript.org/) binary wrapper that makes it seamlessly available via [npm](https://www.npmjs.com/)
 
 ## Installation
 
-[Use npm](https://docs.npmjs.com/cli/install) after making sure your development environment satisfies [the requirements](https://github.com/purescript/purescript/blob/ab5f139336c7343009e88c13b29c9cdf566b1713/INSTALL.md#the-curses-library).
+[Use npm.](https://docs.npmjs.com/cli/install)
 
 ```
 npm install purescript
 ```
 
-## Usage
+Note that this package makes maximum use of `postinstall` [script](https://docs.npmjs.com/misc/scripts), so please make sure that [`ignore-scripts` npm-config](https://docs.npmjs.com/misc/config#ignore-scripts) is not enabled before installation.
 
-```javascript
-const {execFile} = require('child_process');
-const purs = require('purescript');
+Once the command above is executed,
 
-// purs => '/path/to/proj/node_modules/purescript/vendor/purs'
-execFile(purs, ['compile', 'input.purs', '--output', 'output.purs'], err => {
-  if (err) {
-    throw err;
-  }
-
-  console.log('Compiled.');
-});
-```
+1. First, it checks if a PureScript binary has been already cached in your machine, and restores that if available.
+2. The second plan: if no cache is available, it downloads a prebuilt binary from [the PureScript release page](https://github.com/purescript/purescript/releases).
+3. The last resort: if a prebuilt binary is not provided for your platform or the downloaded binary doesn't work correctly, it downloads [the PureScript source code](https://github.com/purescript/purescript) and compile it with [Stack](https://docs.haskellstack.org/).
 
 ## API
 
-### require('purescript')
+### `require('purescript')`
 
-Type: `String`
+Type: `string`
 
-The path to the `purs` binary.
+An absolute path to the installed PureScript binary, which can be used with [`child_process`](https://nodejs.org/api/child_process.html) functions.
+
+```javascript
+const {exec} = require('child_process');
+const purs = require('purescript'); //=> 'Users/you/example/node_modules/purescript/purs.bin'
+
+exec(purs, ['compile', 'input.purs', '--output', 'output.purs'], () => {
+  console.log('Compiled.');
+});
+```
 
 ## CLI
 
 You can use it via CLI by installing it [globally](https://docs.npmjs.com/files/folders#global-installation).
 
 ```
-npm install -g purescript
+npm install --global purescript
 
 purs --help
 ```

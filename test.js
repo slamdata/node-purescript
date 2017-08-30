@@ -1,67 +1,66 @@
 'use strict';
 
-const {EOL} = require('os');
-const fs = require('fs');
-const {join} = require('path');
-const {spawn} = require('child_process');
+const {resolve} = require('path');
 
-const binBuild = require('bin-build');
-const concatStream = require('concat-stream');
-const rimraf = require('rimraf');
+const execa = require('execa');
+const lstat = require('lstat');
+const purescript = require('.');
+const semverRegex = require('semver-regex');
 const test = require('tape');
 
-const {bin} = require('./package.json');
-const {SOURCE_URL} = require('./lib');
-const VERSION = '0.11.6';
-const allowDifferentUserFlag = ' --allow-different-user'.repeat(Number(process.platform !== 'win32'));
+const {bin, scripts} = require('./package.json');
 
-test('The package entry point', t => {
-  t.plan(1);
+test('`bin` field of package.json', t => {
+  t.deepEqual(
+    Object.keys(bin),
+    ['purs'],
+    'should only include a single path.'
+  );
 
-  spawn(require('.'), ['--help'])
-  .stdout.setEncoding('utf8').pipe(concatStream({encoding: 'string'}, msg => {
-    t.ok(
-      msg.startsWith('Usage: purs'),
-      'should expose a path to `purs` binary.'
-    );
-  }));
+  t.end();
 });
 
-test('`purs` command', t => {
-  t.plan(1);
+test('Node.js API', t => {
+  t.equal(
+    typeof purescript,
+    'string',
+    'should expose a string.'
+  );
 
-  spawn('node', [join(__dirname, bin[Object.keys(bin)[0]]), '--version'])
-  .stdout
-  .setEncoding('utf8')
-  .pipe(concatStream({encoding: 'string'}, version => {
-    t.strictEqual(version, VERSION + EOL, 'should run `purs` binary.');
-  }));
+  t.equal(
+    purescript,
+    resolve(bin.purs),
+    'should be equal to the binary path.'
+  );
+
+  t.end();
 });
 
-test('Build script', t => {
-  t.plan(2);
+test('`prepublishOnly` script', async t => {
+  await execa('npm', ['run', 'prepublishOnly']);
+  const stat = await lstat(purescript);
 
-  const tmpDir = join(__dirname, 'tmp');
+  t.ok(
+    stat.isFile(),
+    'should create a placeholder file.'
+  );
 
-  rimraf.sync(tmpDir);
-  fs.mkdirSync(tmpDir);
+  t.ok(
+    stat.size < 250,
+    'should create a sufficiently small file.'
+  );
 
-  binBuild()
-  .src(SOURCE_URL)
-  .cmd(`stack setup${allowDifferentUserFlag}`)
-  .cmd(`stack install${allowDifferentUserFlag} --local-bin-path ${tmpDir}`)
-  .run(runErr => {
-    /* istanbul ignore if */
-    if (runErr) {
-      process.stderr.write(runErr.stack);
-      t.fail(runErr);
-      return;
-    }
+  t.end();
+});
 
-    fs.readdir(tmpDir, (readErr, filePaths) => {
-      t.strictEqual(readErr, null, 'should create a directory.');
+test('`postinstall` script', async t => {
+  await execa('npm', ['run', 'postinstall']);
 
-      t.ok(filePaths.indexOf('purs') !== -1, 'should compile `purs` binary.');
-    });
-  });
+  t.equal(
+    (await execa(purescript, ['--version'])).stdout,
+    scripts.postinstall.match(semverRegex())[0],
+    'should install a PureScript binary.'
+  );
+
+  t.end();
 });

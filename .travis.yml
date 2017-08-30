@@ -1,23 +1,13 @@
 dist: trusty
-git:
-  depth: 1
-cache:
-  directories: $HOME/.stack
 language: node_js
+matrix:
+  include:
+  - node_js: 6
+    before_install: npm install --global npm
+    before_script: npm install --no-save async-to-gen
+    script: node_modules/.bin/async-node test.js
+  - os: osx
+    node_js: node
+    osx_image: xcode9
 branches:
   except: /^v\d/
-node_js:
-  - node
-  - 6
-before_install:
-  - mkdir -p ~/.local/bin
-  - export PATH=$HOME/.local/bin:$PATH
-  - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
-script:  if [[ `node --version` != v6.* ]];
-  then npm run-script pretest && travis_wait 45 npm run-script coverage;
-  else travis_wait 45 npm test;
-  fi;
-after_script: if [[ `node --version` != v6.* ]];
-  then npm install istanbul-coveralls &&
-  node node_modules/.bin/istanbul-coveralls;
-  fi;
