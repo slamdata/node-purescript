@@ -1,3 +1,5 @@
+<img alt="logo" src="./media/logo.png" width="330px" align="right">
+
 # PureScript npm package
 
 [![npm version](http://img.shields.io/npm/v/purescript.svg)](https://www.npmjs.com/package/purescript)
@@ -18,9 +20,17 @@ Note that this package makes maximum use of `postinstall` [script](https://docs.
 
 Once the command above is executed,
 
-1. First, it checks if a PureScript binary has been already cached in your machine, and restores that if available.
-2. The second plan: if no cache is available, it downloads a prebuilt binary from [the PureScript release page](https://github.com/purescript/purescript/releases).
-3. The last resort: if a prebuilt binary is not provided for your platform or the downloaded binary doesn't work correctly, it downloads [the PureScript source code](https://github.com/purescript/purescript) and compile it with [Stack](https://docs.haskellstack.org/).
+__1.__ First, it checks if a PureScript binary has been already cached in your machine, and restores that if available.
+
+<img alt="screencast: restoring a cache" src="./media/screencast0.gif" width="650px">
+
+__2.__ The second plan: if no cache is available, it downloads a prebuilt binary from [the PureScript release page](https://github.com/purescript/purescript/releases).
+
+<img alt="screencast: downloading a binary" src="./media/screencast1.gif" width="650px">
+
+__3.__ The last resort: if a prebuilt binary is not provided for your platform or the downloaded binary doesn't work correctly, it downloads [the PureScript source code](https://github.com/purescript/purescript/tree/master) and compile it with [Stack](https://docs.haskellstack.org/).
+
+<img alt="screencast: compile a source" src="./media/screencast2.gif" width="650px">
 
 ## API
 
@@ -54,3 +64,5 @@ purs --help
 Copyright (c) 2015 - 2017 [Shinnosuke Watanabe](https://github.com/shinnn)
 
 Licensed under [the MIT License](./LICENSE).
+
+The original PureScript logo is included in [purescript/purescript](https://github.com/purescript/purescript) repository which is licensed under [the 3-Clause BSD License](https://github.com/purescript/purescript/blob/master/LICENSE).
