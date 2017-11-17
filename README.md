@@ -61,8 +61,6 @@ purs --help
 
 ## License
 
-Copyright (c) 2015 - 2017 [Shinnosuke Watanabe](https://github.com/shinnn)
-
-Licensed under [the MIT License](./LICENSE).
+[ISC License](./LICENSE) © 2017 Shinnosuke Watanabe
 
 The original PureScript logo is included in [purescript/purescript](https://github.com/purescript/purescript) repository which is licensed under [the 3-Clause BSD License](https://github.com/purescript/purescript/blob/master/LICENSE).
