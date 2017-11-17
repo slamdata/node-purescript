@@ -27,6 +27,7 @@
     "build",
     "install",
     "installation",
+    "fallback",
     "purs",
     "purescript",
     "haskell",
