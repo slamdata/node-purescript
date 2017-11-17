@@ -40,11 +40,11 @@
     "wrapper"
   ],
   "dependencies": {
-    "install-purescript-cli": "^0.1.0"
+    "install-purescript-cli": "^0.2.0"
   },
   "devDependencies": {
     "@shinnn/eslint-config-node": "^4.0.0",
-    "eslint": "^4.5.0",
+    "eslint": "^4.11.0",
     "execa": "^0.8.0",
     "lodash": "^4.17.4",
     "lstat": "^1.0.0",
